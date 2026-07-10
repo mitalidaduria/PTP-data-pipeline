@@ -33,7 +33,6 @@ jobs:
         ls -la /tmp/pitap-datalake/governance/
         cat /tmp/pitap-datalake/governance/*.json
 
-        
 - name: Run ETL Pipeline & Validate Governance Gates
       run: |
         python etl_pipeline.py
