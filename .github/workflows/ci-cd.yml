@@ -45,3 +45,19 @@ jobs:
       run: |
         ls -la /tmp/pitap-datalake/governance/
         cat /tmp/pitap-datalake/governance/*.json
+        
+    - name: Execute Pipeline and Automation Engines
+      run: |
+        echo "=== RUNNING ETL PIPELINE ==="
+        python etl_pipeline.py
+        
+        echo "=== RUNNING N8N WORKFLOW ==="
+        python n8n_workflow_equivalent.py
+        
+        echo "=== RUNNING CREWAI ARCHITECTURE ==="
+        python advisory_crewai_workflow.py
+
+    - name: Verify Governance Audit Logs
+      run: |
+        ls -la /tmp/pitap-datalake/governance/
+        cat /tmp/pitap-datalake/governance/*.json
