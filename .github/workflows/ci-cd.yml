@@ -32,3 +32,17 @@ jobs:
       run: |
         ls -la /tmp/pitap-datalake/governance/
         cat /tmp/pitap-datalake/governance/*.json
+
+        
+- name: Run ETL Pipeline & Validate Governance Gates
+      run: |
+        python etl_pipeline.py
+
+    - name: Run n8n Workflow Automation Engine
+      run: |
+        python n8n_workflow_equivalent.py
+
+    - name: Verify Governance Audit Logs
+      run: |
+        ls -la /tmp/pitap-datalake/governance/
+        cat /tmp/pitap-datalake/governance/*.json
